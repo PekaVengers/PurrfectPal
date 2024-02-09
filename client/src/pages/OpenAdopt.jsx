@@ -77,6 +77,13 @@ export default function OpenAdopt() {
               name="owner_message"
             ></textarea>
           </div>
+
+          <div>
+            <input type="number" placeholder="Initial Bid[in INR]"
+            className="w-full bg-[#fefefe] outline-none rounded-md p-2 mb-4"
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full p-2 bg-[#fefefe] text-[#0B0019] rounded-[5rem] hover:text-[#080909] uppercase font-semibold hover:bg-[#f8aa26]"

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import AddPetButton from "../components/pets/DarkButton";
 import SectionHeading from "../components/SectionHeading";
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import Loader from "../components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import {
@@ -24,16 +23,9 @@ export default function Profile() {
   const [sentRequests, setSentRequests] = useState([]);
   const [loader, setLoader] = useState(false);
   const [pets, setPets] = useState([]);
-  const [request, setRequest] = useState(false);
+  const [request] = useState(false);
 
   const isLoggedIn = true;
-  const login = true;
-
-  useEffect(() => {
-    if (localStorage.getItem("isLoggedIn") && localStorage.getItem("token")) {
-      login();
-    }
-  }, [login]);
 
   // load user's pets initially on first render
   useEffect(() => {
