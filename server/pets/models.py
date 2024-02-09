@@ -17,11 +17,12 @@ class Pet(models.Model):
 
 class PetAdopt(models.Model):
   pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
-  adopter = models.ForeignKey('users.User', on_delete=models.CASCADE)
+  adopter = models.ForeignKey('users.User', on_delete=models.CASCADE, null=True, blank=True)
   start_date = models.DateField()
   end_date = models.DateField()
   is_adopted = models.BooleanField(default=False)
   owner_message = models.TextField(null=True, blank=True)
+  amount = models.IntegerField()
 
   def __str__(self):
     return f"{self.pet.name} - {self.adopter.username}"

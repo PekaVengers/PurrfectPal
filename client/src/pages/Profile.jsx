@@ -1,15 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import AddPetButton from "../components/pets/DarkButton";
 import SectionHeading from "../components/SectionHeading";
-import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import Loader from "../components/Loader";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  getUserPets,
-  getReceivedRequest,
-  getSentRequest,
-} from "../utils/profilePageHelpers";
 import ProfileCard from "../components/profile/ProfileCard";
 import ReceivedRequests from "../components/profile/ReceivedRequests";
 import SentRequests from "../components/profile/SentRequests";
@@ -17,44 +10,46 @@ import ProfilePetsList from "../components/profile/ProfilePetsList";
 import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
 import { allPets } from "../constants/config";
+import checkAuth from "../utils/checkAuth";
+import apiRequest from "../utils/apiRequest";
+
+export async function loader({ params, request }) {
+  if (!checkAuth()) {
+    return redirect("/login");
+  }
+  const finalData = {};
+
+  try {
+    const data = await apiRequest("/api/users/details/", "GET");
+    if (data?.redirect == true) {
+      return redirect("/login");
+    }
+    finalData.userData = data;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    const data = await apiRequest("/api/pets/", "GET");
+    if (data?.redirect == true) {
+      return redirect("/login");
+    }
+    finalData.petsData = data;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+  return finalData;
+}
 
 export default function Profile() {
   const online = useOnline();
-  const [receivedRequests, setReceivedRequests] = useState([]);
-  const [sentRequests, setSentRequests] = useState([]);
-  const [loader, setLoader] = useState(false);
   const [pets, setPets] = useState([]);
-  const [request, setRequest] = useState(false);
-
-  const isLoggedIn = true;
-  const login = true;
-
-  useEffect(() => {
-    if (localStorage.getItem("isLoggedIn") && localStorage.getItem("token")) {
-      login();
-    }
-  }, [login]);
-
-  // load user's pets initially on first render
-  useEffect(() => {
-    if (isLoggedIn) {
-      setLoader(true);
-      getUserPets(setPets);
-      getReceivedRequest(setReceivedRequests);
-      getSentRequest(setSentRequests);
-      setLoader(false);
-    }
-  }, [isLoggedIn]);
-
-  // If user is not logged in then early return
-  if (!isLoggedIn) {
-    return (
-      <SectionHeading
-        heading="login to continue."
-        styles="text-center"
-      ></SectionHeading>
-    );
-  }
+  const loaderData = useLoaderData();
+  const [userPets, setUserPets] = useState(loaderData?.petsData || []);
+  const [userData, setUserData] = useState(loaderData?.userData || null);
 
   if (!online) {
     return <Offline />;
@@ -62,27 +57,26 @@ export default function Profile() {
 
   return (
     <>
-      {loader && <Loader />}
       {pets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
           <ProfileCard />
 
-          {
+          {/* {
             request && (
               <div className="requests w-[90%] md:w-[80%] xl:w-[65%] 2xl:w-[60%] 3xl:w-[50%] flex md:flex-wrap md:flex-row flex-col gap-4 items-stretch justify-center my-8">
-            {receivedRequests &&
-              receivedRequests.map((request) => (
-                <ReceivedRequests request={request} key={request?._id} />
-              ))}
+                {receivedRequests &&
+                  receivedRequests.map((request) => (
+                    <ReceivedRequests request={request} key={request?._id} />
+                  ))}
 
-            {sentRequests &&
-              sentRequests.map((request) => (
-                <SentRequests request={request} key={request?._id} />
-              ))}
-          </div>
+                {sentRequests &&
+                  sentRequests.map((request) => (
+                    <SentRequests request={request} key={request?._id} />
+                  ))}
+              </div>
             )
-          }
+          } */}
 
           <Link to="/add-pet">
             <AddPetButton buttonText="Add your pet" styles="my-8" />

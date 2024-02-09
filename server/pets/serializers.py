@@ -1,4 +1,4 @@
-from .models import Pet
+from .models import Pet, PetAdopt
 from rest_framework import serializers
 
 class PetSerializer(serializers.ModelSerializer):
@@ -10,3 +10,8 @@ class PetSerializer(serializers.ModelSerializer):
     data['owner'] = self.context['request'].user
     validated_data = super().validate(data)
     return validated_data
+  
+class PetAdoptSerializer(serializers.ModelSerializer):
+  class Meta:
+    fields = "__all__"
+    model = PetAdopt
