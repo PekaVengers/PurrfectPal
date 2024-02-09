@@ -56,13 +56,8 @@ class PetAdoptView(APIView):
   permission_classes = (IsAuthenticated, )
 
   def post(self, request, pk):
-    if not Pet.objects.filter(id=pk).exists():
-      return Response({'error': 'Pet not found'}, status=status.HTTP_404_NOT_FOUND)
-    pet = Pet.objects.get(id=pk)
     data = request.data
-    data['pet'] = pet.id
     pet_adopt_serializer = PetAdoptSerializer(data=data)
-
     if pet_adopt_serializer.is_valid():
       pet_adopt_serializer.save()
       return Response(pet_adopt_serializer.data, status=status.HTTP_201_CREATED)
@@ -75,3 +70,9 @@ class PetAdoptView(APIView):
     pet_adopts = pet.petadopt_set.all()
     pet_adopt_serializer = PetAdoptSerializer(pet_adopts, many=True)
     return Response(pet_adopt_serializer.data)
+
+class AdoptionPetsView(APIView):
+  def get(self, request):
+    pets = Pet.objects.filter(open_to_adopt=True)
+    pet_serializer = PetSerializer(pets, many=True)
+    return Response(pet_serializer.data)
