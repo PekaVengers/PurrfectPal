@@ -22,7 +22,6 @@ export default function Home() {
           className="w-full h-full object-cover"
         />
       </div>
-      <hr className="border-dotted border-t-4 border-[#DFE8FD]"/>
       <main className="lg:w-[100%] xl:w-[90%] 2xl:w-[70%] 3xl:w-[60%] 4xl:w-[55%] m-auto">
         <Heading text={"Our Vision"} />
         <Hero />
