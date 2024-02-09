@@ -1,12 +1,8 @@
 import avatar from "../../assets/images/avatar.png";
 
-const ProfileCard = () => {
-  const [username, userLocation, phoneNo, email] = [
-    localStorage.getItem("name"),
-    localStorage.getItem("location"),
-    localStorage.getItem("phoneNo"),
-    localStorage.getItem("email"),
-  ];
+const ProfileCard = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {username, userLocation, phoneNo, email} = props;
   return (
     <div className="rounded-[3rem] bg-[#EEF3FF] relative mb-[1rem] py-[1.5rem] px-[2rem] rounded-[3rem] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-[1rem] items-center shadow-custom">
         <div className="overflow-hidden w-[4rem] h-[4rem] vsm:w-[5rem] vsm:h-[5rem] lg:w-[6rem] lg:h-[6rem] rounded-[50%] border-2 border-black">
