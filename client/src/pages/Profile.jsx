@@ -50,6 +50,7 @@ export default function Profile() {
   const loaderData = useLoaderData();
   const [userPets, setUserPets] = useState(loaderData?.petsData || []);
   const [userData, setUserData] = useState(loaderData?.userData || null);
+  console.log(loaderData);
 
   if (!online) {
     return <Offline />;
