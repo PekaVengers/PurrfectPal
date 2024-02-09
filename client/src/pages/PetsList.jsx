@@ -64,7 +64,7 @@ export default function PetsList() {
           )}
         </div>
       </div>
-      {<Loader />}
+      {/* {<Loader />} */}
     </>
   );
 }
