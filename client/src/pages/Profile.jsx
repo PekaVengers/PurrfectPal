@@ -63,7 +63,7 @@ export default function Profile() {
       {userPets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
-          <ProfileCard username={userData.name} userLocation={userData.location} phoneNo={userData.phone} email={userData.username}/>
+          <ProfileCard username={userData.name} userLocation={userData.location} phoneNo={userData.phone} email={userData.username} />
 
           {/* {
             request && (
@@ -99,7 +99,7 @@ export default function Profile() {
                       petName={name}
                       petType={category}
                       petBreed={breed}
-                      petAge={new Date().getFullYear - birth_year}
+                      petAge={(new Date().getFullYear()) - birth_year}
                       profile={IMG_BASE_URL + profile_img}
                       toast={toast}
                     />
