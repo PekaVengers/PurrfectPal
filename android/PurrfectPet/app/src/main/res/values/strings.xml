@@ -21,5 +21,19 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="adopt">Adopt</string>
     <string name="request_to_adopt">Request to Adopt</string>
+    <string name="video_call">Video Call</string>
+    <string name="question_1">Question 1: How do you typically handle stress or unexpected challenges in your life?</string>
+    <string name="question_2">Question 2: Can you describe a situation where you had to show patience and perseverance in order to achieve a goal?</string>
+    <string name="question_3">Question 3: What strategies do you use to manage your emotions, especially in difficult situations?</string>
+    <string name="question_4">Question 4: How do you feel about setting and respecting boundaries, both for yourself and others?</string>
+    <string name="question_5">Question 5: Can you tell me about a time when you had to take responsibility for the well-being of another living being?</string>
+    <string name="question_6">Question 6: How do you handle conflicts or disagreements with others, especially when they involve differing opinions or values?</string>
+    <string name="question_7">Question 7: What motivates you to provide care and support for animals or pets?</string>
+    <string name="question_8">Question 8: Can you describe a situation where you had to adapt to new routines or environments? How did you cope with the change?</string>
+    <string name="question_9">Question 9: How do you prioritize your commitments and responsibilities in your daily life?</string>
+    <string name="question_10">Question 10: Can you share a personal experience that demonstrates your capacity for empathy and compassion towards animals or other people?</string>
+    <string name="verify">Verify</string>
+    <string name="enter_aadhaar_number">Enter Aadhaar Number</string>
+    <string name="your_score_0">Your Score: 0</string>
 
 </resources>

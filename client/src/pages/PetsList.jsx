@@ -23,10 +23,12 @@ export async function loader() {
 }
 
 export default function PetsList() {
+  const [availablePets, setAvailablePets] = useState([]);
+  setAvailablePets(allPets);
   const online = useOnline();
   const loaderData = useLoaderData();
   const allPets = loaderData || [];
-  console.log(allPets)
+  console.log(`Available pets = ${availablePets}`);
 
   if (!online) {
     return <Offline />;
@@ -42,24 +44,24 @@ export default function PetsList() {
         />
 
         <div className="pets mt-[2rem] gsm:mt-[3rem] md:mt-[4rem] mb-[3rem] max-w-[90%] flex flex-wrap gap-x-[3rem] gap-y-[2rem] items-stretch justify-center">
-          {allPets.map(
+          {availablePets.map(
             ({
-              _id,
-              petName,
-              petType,
-              petBreed,
+              id,
+              name,
+              category,
+              breed,
+              profile_img,
               ownerMessage,
               startDate,
               endDate,
-              profile,
             }) => {
               return (
                 <PetCard
-                  key={_id}
-                  petId={_id}
-                  petName={petName}
-                  category={petType}
-                  breed={petBreed}
+                  key={id}
+                  petId={id}
+                  petName={name}
+                  category={category}
+                  breed={breed}
                   ownerMessage={ownerMessage || ""}
                   startDate={
                     startDate
@@ -71,7 +73,7 @@ export default function PetsList() {
                       ? endDate.slice(0, 10).split("-").join("/")
                       : "25/01/2000"
                   }
-                  profile={profile}
+                  profile={profile_img}
                 />
               );
             }
