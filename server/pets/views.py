@@ -16,7 +16,7 @@ class PetsView(APIView):
     data = {
       "filter": {
       "owner_id": {
-        "equals": 14
+        "equals": request.user.id
         }
       }
     }
@@ -46,9 +46,9 @@ class PetsView(APIView):
       }
 
       response = make_request("POST", "rest/pet/__one", data)
-      print(response.json())
+      data = response.json()
       
-      return Response(pet_serializer.data, status=status.HTTP_201_CREATED)
+      return Response(data.get("data"), status=status.HTTP_201_CREATED)
     print(pet_serializer.errors)
     return Response(pet_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

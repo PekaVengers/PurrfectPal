@@ -41,7 +41,7 @@ export default function AddPet() {
 
   return (
     <>
-    <Cursor/>
+      <Cursor />
       {loader && <Loader />}
       <div className="w-full min-h-screen bg-[#919177] flex flex-col justify-center items-center gap-[1rem] pt-[8rem] pb-[5rem]">
         <SectionHeading heading="Add Pet" styles="text-[4rem]" />

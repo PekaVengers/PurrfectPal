@@ -7,7 +7,7 @@ import Profile, {loader as profileLoader} from "./pages/Profile";
 import AddPet, {action as petAction} from "./pages/AddPet";
 import Petfolio from "./pages/Petfolio";
 import Error from "./pages/Error";
-import PetsList from "./pages/PetsList";
+import PetsList, {loader as petsLoader} from "./pages/PetsList";
 import { AuthProvider } from "./contexts/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 import OpenAdopt, {action as openAdoptAction} from "./pages/OpenAdopt";
@@ -44,6 +44,7 @@ const router = createBrowserRouter([
         element: <AddPet />,
       },
       {
+        loader: petsLoader,
         path: "pets",
         element: <PetsList />,
       },
