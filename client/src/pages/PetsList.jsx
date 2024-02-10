@@ -14,20 +14,22 @@ export async function loader() {
   console.log("Loader called");
   try {
     const res = await apiRequest("/api/pets/adopt/");
+    console.log(res);
     return res;
+    
   } catch (error) {
     console.log(error);
     return error.response.data;
   }
-  return null;
 }
 
 export default function PetsList() {
-  const [availablePets, setAvailablePets] = useState([]);
-  setAvailablePets(allPets);
+  
   const online = useOnline();
   const loaderData = useLoaderData();
+  console.log(loaderData);
   const allPets = loaderData || [];
+  const [availablePets, setAvailablePets] = useState(allPets);
   console.log(`Available pets = ${availablePets}`);
 
   if (!online) {
