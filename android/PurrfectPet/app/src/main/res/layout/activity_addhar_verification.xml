@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Addhar_Verification_Activity"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:layout_marginTop="300dp"
+        android:id="@+id/aadhaarNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_aadhaar_number"
+        android:inputType="number"
+        android:maxLength="12"
+        android:maxLines="1" />
+
+    <Button
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/verifyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/verify"/>
+
+</LinearLayout>

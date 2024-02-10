@@ -21,4 +21,9 @@
         android:title="@string/log_out"
         app:actionLayout="@layout/custom_menu_item"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_video"
+        android:title="@string/video_call"
+        app:actionLayout="@layout/custom_menu_item"
+        app:showAsAction="never" />
 </menu>

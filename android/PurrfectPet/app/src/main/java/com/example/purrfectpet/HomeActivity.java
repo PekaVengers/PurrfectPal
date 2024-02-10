@@ -63,6 +63,10 @@ public class HomeActivity extends AppCompatActivity implements PetAdapter.OnItem
         } else if (id == R.id.action_logout) {
             logout();
             return true;
+        } else if (id == R.id.action_video){
+            Intent intent = new Intent(HomeActivity.this, Vonage_Emeet.class);
+            startActivity(intent);
+            return true;
         }
 
         return false;
