@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background color for the menu item -->
+    <solid android:color="@color/white" />
+    <!-- Corner radius for rounded corners, adjust as needed -->
+    <corners android:radius="4dp" />
+</shape>
