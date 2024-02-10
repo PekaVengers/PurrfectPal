@@ -14,7 +14,7 @@ export default function Home() {
 
 
   return (
-    <div className="w-full min-h-screen bg-[#919177] relative border-2 border-black">
+    <div className="w-full min-h-screen bg-[#919177] relative">
       <div className="w-full mt-[4rem] vsm:pt-[2rem] md:pt-[5rem] xl:w-[90%] mx-auto 2xl:w-[80%]">
         <img
           src={Banner}
