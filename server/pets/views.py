@@ -106,18 +106,12 @@ class PetAdoptView(APIView):
 
 class AdoptionPetsView(APIView):
   def get(self, request):
-    data = {
-      "filter": {
-        "open_to_adopt": {
-          "equals": True
-        }
-      }
-    }
-    
+     
 
-    response = make_request("GET", "rest/pet", data=data)
+    response = make_request("GET", "custom/open_pets")
+    print(response)
     data = response.json()
 
-    # select all the pets from pet_adopt table where the adopter id is null
+    print(data)
     
     return Response(data.get("data"))
