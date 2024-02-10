@@ -12,6 +12,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 import OpenAdopt, {action as openAdoptAction} from "./pages/OpenAdopt";
 import PsychoQuiz from "./components/psycho_quiz/PsychoQuiz";
+import Requests from "./components/profile/Requests";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'quiz',
         element: <PsychoQuiz/>
+      },
+      {
+        path: 'req',
+        element: <Requests/>
       }
     ],
   },
