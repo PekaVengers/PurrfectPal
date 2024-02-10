@@ -8,7 +8,6 @@ import Offline from "../components/Offline";
 import { useActionData, Form, redirect } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
 
-
 export async function action({ request }) {
   const formData = await request.formData();
   try {

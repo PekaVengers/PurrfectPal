@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .serializers import PetSerializer, PetAdoptSerializer
 from .models import Pet
+from config.utils import make_request, upload_image
 
 class PetsView(APIView):
 
@@ -12,14 +13,41 @@ class PetsView(APIView):
   def get(self, request):
     pets = Pet.objects.filter(owner=request.user)
     pet_serializer = PetSerializer(pets, many=True)
-    return Response(pet_serializer.data)
+    data = {
+      "filter": {
+      "owner_id": {
+        "equals": 14
+        }
+      }
+    }
+    response = make_request("GET", "rest/pet", data=data)
+    data = response.json()
+    return Response(data.get("data"))
 
   def post(self, request):
     data = request.data
     pet_serializer = PetSerializer(data=data, context={'request': request})
-
+    profile_img = request.FILES.get("profile_img")
+    
     if pet_serializer.is_valid():
-      shop = pet_serializer.save()
+      image_url = upload_image(profile_img)
+      data = {
+        "id": data.get("id"),
+        "name": data.get("name"),
+        "breed": data.get("breed"),
+        "category": data.get("category"),
+        "birth_year": data.get("birth_year"),
+        "interests": data.get("interests"),
+        "precautions": data.get("precautions"),
+        "user_ref": {"connect": {"id": request.user.id}},
+        "gender": data.get("gender"),
+        "profile_img": image_url,
+        "open_to_adopt": False,
+      }
+
+      response = make_request("POST", "rest/pet/__one", data)
+      print(response.json())
+      
       return Response(pet_serializer.data, status=status.HTTP_201_CREATED)
     print(pet_serializer.errors)
     return Response(pet_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -57,12 +85,20 @@ class PetAdoptView(APIView):
 
   def post(self, request, pk):
     data = request.data
-    pet_adopt_serializer = PetAdoptSerializer(data=data)
-    if pet_adopt_serializer.is_valid():
-      pet_adopt_serializer.save()
-      return Response(pet_adopt_serializer.data, status=status.HTTP_201_CREATED)
-    return Response(pet_adopt_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    data = {
+      "start_date": data.get("start_date")+"T21:40:30Z",
+      "end_date": data.get("end_date")+"T21:40:30Z",
+      "owner_message": data.get("owner_message"),
+      "amount": data.get("amount"),
+      "pet_ref": {"connect": {"id": pk}},
+    }
+    response = make_request("POST", f"rest/pet_adopt/__one", data)
+    data = response.json()
+    make_request("PATCH", f"rest/pet/{pk}", data={"open_to_adopt": True})
+    print(data)
+    return Response(data.get("data"), status=status.HTTP_201_CREATED)
 
+    
   def get(self, request, pk):
     if not Pet.objects.filter(id=pk).exists():
       return Response({'error': 'Pet not found'}, status=status.HTTP_404_NOT_FOUND)
@@ -73,6 +109,13 @@ class PetAdoptView(APIView):
 
 class AdoptionPetsView(APIView):
   def get(self, request):
-    pets = Pet.objects.filter(open_to_adopt=True)
-    pet_serializer = PetSerializer(pets, many=True)
-    return Response(pet_serializer.data)
+    data = {
+      "filter": {
+        "open_to_adopt": {
+          "equals": True
+        }
+      }
+    }
+    response = make_request("GET", "rest/pet", data=data)
+    data = response.json()
+    return Response(data.get("data"))

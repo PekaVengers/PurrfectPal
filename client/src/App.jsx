@@ -10,7 +10,7 @@ import Error from "./pages/Error";
 import PetsList from "./pages/PetsList";
 import { AuthProvider } from "./contexts/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
-import OpenAdopt from "./pages/OpenAdopt";
+import OpenAdopt, {action as openAdoptAction} from "./pages/OpenAdopt";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +51,8 @@ const router = createBrowserRouter([
         element: <Petfolio />,
       },
       {
-        path: "open-adopt",
+        action: openAdoptAction,
+        path: "open-adopt/:id",
         element: <OpenAdopt />,
       },
     ],
