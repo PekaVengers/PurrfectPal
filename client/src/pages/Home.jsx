@@ -1,4 +1,4 @@
-import Banner from "../assets/images/banner.png";
+import Banner from "../assets/images/a.png";
 import Hero from "../components/homepage/Hero";
 import CTA from "../components/homepage/CTA";
 import Testimonial from "../components/homepage/Testimonial";
@@ -14,12 +14,12 @@ export default function Home() {
 
 
   return (
-    <div className="w-full min-h-screen bg-[#919177] relative">
-      <div className="w-full">
+    <div className="w-full min-h-screen bg-[#919177] relative border-2 border-black">
+      <div className="w-full mt-[4rem] vsm:pt-[2rem] md:pt-[5rem] xl:w-[90%] mx-auto 2xl:w-[80%]">
         <img
           src={Banner}
           alt="banner_image"
-          className="w-full h-full object-cover"
+          className="object-cover w-[90%] vsm:w-[80%] gsm:w-[70%] md:w-[60%] lg:w-[50%] m-auto"
         />
       </div>
       <main className="lg:w-[100%] xl:w-[90%] 2xl:w-[70%] 3xl:w-[60%] 4xl:w-[55%] m-auto">
