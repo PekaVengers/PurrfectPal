@@ -6,6 +6,7 @@ import Input from "../components/register/Input";
 import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
 import axiosInstance from "../utils/apiConfig";
+import Cursor from "../components/Cursor";
 
 export async function action({ params, request }) {
   const formData = await request.formData();
@@ -13,27 +14,26 @@ export async function action({ params, request }) {
   const password = formData.get("password");
 
   const loginData = {
-    'client_id': import.meta.env.VITE_CLIENT_ID,
-    'client_secret': import.meta.env.VITE_CLIENT_SECRET,
-    'grant_type': 'password',
-    'username': email,
-    'password': password,
+    client_id: import.meta.env.VITE_CLIENT_ID,
+    client_secret: import.meta.env.VITE_CLIENT_SECRET,
+    grant_type: "password",
+    username: email,
+    password: password,
   };
 
   console.log(loginData);
 
   try {
-    const res = await axiosInstance.post('/auth/token/', loginData);
+    const res = await axiosInstance.post("/auth/token/", loginData);
     const data = res.data;
     localStorage.setItem("access_token", data.access_token);
     localStorage.setItem("refresh_token", data.refresh_token);
     localStorage.setItem("loggedIn", JSON.stringify(true));
     return redirect("/profile");
   } catch (error) {
-    return { "error": "Invalid email or password." };
+    return { error: "Invalid email or password." };
   }
 }
-
 
 export default function Login() {
   const online = useOnline();
@@ -46,6 +46,7 @@ export default function Login() {
 
   return (
     <>
+      <Cursor />
       <ToastContainer position="top-center" />
       <div className="w-full h-screen bg-[#919177] flex flex-col justify-center items-center">
         <SectionHeading heading="Login" />
@@ -56,8 +57,15 @@ export default function Login() {
           <Label htmlFor={"email"} text={"Email"} />
           <Input required={true} type={"email"} name={"email"} id={"email"} />
           <Label htmlFor={"password"} text={"Password"} />
-          <Input required={true} type={"password"} name={"password"} id={"password"} />
-          {actionData && <span className="text-red-500">Invalid username or Password</span>}
+          <Input
+            required={true}
+            type={"password"}
+            name={"password"}
+            id={"password"}
+          />
+          {actionData && (
+            <span className="text-red-500">Invalid username or Password</span>
+          )}
           <button
             type="submit"
             className="w-full p-2 bg-[#565637] text-[#EEF3FF] text-[1.2rem] md:text-[1.5rem] rounded-md hover:text-[#FEFFC0] hover:bg-[#0B0019] uppercase font-semibold md:mt-4"

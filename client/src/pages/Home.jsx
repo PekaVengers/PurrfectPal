@@ -5,6 +5,7 @@ import Testimonial from "../components/homepage/Testimonial";
 import Heading from "../components/homepage/Heading";
 import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
+import Cursor from "../components/Cursor";
 
 export default function Home() {
   const online = useOnline();
@@ -14,7 +15,9 @@ export default function Home() {
 
 
   return (
-    <div className="w-full min-h-screen bg-[#919177] relative">
+<>
+<Cursor/>
+<div className="w-full min-h-screen bg-[#919177] relative">
       <div className="w-full mt-[4rem] vsm:pt-[2rem] md:pt-[5rem] xl:w-[90%] mx-auto 2xl:w-[80%]">
         <img
           src={Banner}
@@ -31,5 +34,6 @@ export default function Home() {
         <Testimonial />
       </main>
     </div>
+</>
   );
 }

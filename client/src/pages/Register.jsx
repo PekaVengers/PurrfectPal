@@ -11,6 +11,7 @@ import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import verifyAadhaar from "../utils/verifyAadhar";
 import Loader from "../components/Loader";
+import Cursor from "../components/Cursor";
 
 // eslint-disable-next-line no-unused-vars, react-refresh/only-export-components
 export async function action({ request }) {
@@ -66,6 +67,7 @@ export default function Register() {
 
   return (
     <>
+      <Cursor />
       {loader && <Loader />}
       <div className="w-full min-h-screen bg-[#919177] flex flex-col justify-center items-center md:gap-[1rem] pt-[4rem] vsm:pt-[8rem] pb-[2rem] vsm:pb-[3.5rem] md:pb-[5rem]">
         <SectionHeading heading="Register" />
