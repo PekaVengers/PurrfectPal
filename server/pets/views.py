@@ -54,11 +54,9 @@ class PetsView(APIView):
 
 class PetView(APIView):
   def get(self, request, pk):
-    if not Pet.objects.filter(id=pk).exists():
-      return Response({'error': 'Pet not found'}, status=status.HTTP_404_NOT_FOUND)
-    pet = Pet.objects.get(id=pk)
-    pet_serializer = PetSerializer(pet)
-    return Response(pet_serializer.data)
+    response = make_request("GET", f"custom/petfolio?id={pk}")
+    data = response.json()
+    return Response(data.get("data"))
   
   def put(self, request, pk):
     if not Pet.objects.filter(id=pk).exists():
@@ -106,8 +104,6 @@ class PetAdoptView(APIView):
 
 class AdoptionPetsView(APIView):
   def get(self, request):
-     
-
     response = make_request("GET", "custom/open_pets")
     print(response)
     data = response.json()

@@ -5,7 +5,7 @@ import Register, { action as registerAction } from "./pages/Register";
 import Login, { action as loginAction } from "./pages/Login";
 import Profile, {loader as profileLoader} from "./pages/Profile";
 import AddPet, {action as petAction} from "./pages/AddPet";
-import Petfolio from "./pages/Petfolio";
+import Petfolio, {loader as petfolioLoader} from "./pages/Petfolio";
 import Error from "./pages/Error";
 import PetsList, {loader as petsLoader} from "./pages/PetsList";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -50,6 +50,7 @@ const router = createBrowserRouter([
         element: <PetsList />,
       },
       {
+        loader: petfolioLoader,
         path: "pets/:petId",
         element: <Petfolio />,
       },

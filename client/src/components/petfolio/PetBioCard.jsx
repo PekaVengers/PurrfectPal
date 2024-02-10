@@ -6,14 +6,11 @@ const PetBioCard = ({
   petDetails,
   petId,
   availableForBorrow,
-  setLoader,
   toast,
 }) => {
   const adoptNowHandler = async () => {
     const message = prompt("Enter a message for the pet owner: ");
-    setLoader(true);
     adoptPet(message, petId, toast);
-    setLoader(false);
   };
 
   return (

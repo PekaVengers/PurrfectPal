@@ -1,7 +1,6 @@
 import SectionHeading from "../components/SectionHeading";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Loader from "../components/Loader";
+import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import PetBioCard from "../components/petfolio/PetBioCard";
 import { fetchPetDetails } from "../utils/fetchPetDetails";
@@ -12,27 +11,32 @@ import puppy1 from "../assets/images/puppy1.jpg";
 import puppy2 from "../assets/images/puppy2.jpg";
 import puppy3 from "../assets/images/puppy3.jpg";
 import Cursor from "../components/Cursor";
+import apiRequest from "../utils/apiRequest";
+
+export async function loader({ params }) {
+  const { id } = params;
+  try {
+    const res = await apiRequest("get", `/pets/${id}`);
+    console.log("Pet Details = ", res);
+    return res;
+  } catch (error) {
+    console.log("Error in fetching pet details: ", error);
+    return error.response.data;
+  }
+  return null;
+}
 
 export default function Petfolio() {
   const online = useOnline();
-  const [loader, setLoader] = useState(false);
-  // eslint-disable-next-line no-unused-vars
+  const loaderData = useLoaderData();
+  console.log(loaderData);
   const [petId, setPetId] = useState(useParams().petId);
-  // const [adopterMessage, setAdopterMessage] = useState("");
   const [petDetails, setPetDetails] = useState({});
   const [availableForBorrow, setIsAvailableForBorrow] = useState(false);
   const images = [
     puppy1, puppy2, puppy3
   ];
 
-  useEffect(() => {
-    setLoader(true);
-    fetchPetDetails(petId, setPetDetails, toast);
-    console.log("Pet Details = ", petDetails);
-    setIsAvailableForBorrow(petDetails?.availableForBorrow);
-    setLoader(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [petDetails?.availableForBorrow, petId]);
 
   if (!online) {
     return <Offline />;
@@ -40,7 +44,7 @@ export default function Petfolio() {
 
   return (
     <>
-    <Cursor/>
+      <Cursor />
       {petDetails ? (
         <div className="bg-[#919177] w-full min-h-screen flex items-center">
           <main className="w-[95%] xl:w-[80%] 2xl:w-[60%] mt-[5rem] vsm:mt-[7rem] gsm:mt-[10rem] mb-[2rem] gsm:mb-[5rem] flex flex-col justify-center items-center mx-auto">
@@ -50,7 +54,6 @@ export default function Petfolio() {
               petId={petId}
               toast={toast}
               availableForBorrow={availableForBorrow}
-              setLoader={setLoader}
             />
             {petDetails?.petPrecautions && (
               <h2 className="p-2 px-[0.7rem] gsm:px-4 rounded-[1rem] text-[1.2rem] vsm:text-[1.5rem] gsm:text-[1.7rem] font-primary text-[#EAA124] bg-[#0B0019] overflow-auto max-w-[90%] flex flex-col md:flex-row items-center vsm:mt-4">
@@ -105,7 +108,6 @@ export default function Petfolio() {
         />
       )}
       <ToastContainer position="top-center" />
-      {loader && <Loader />}
     </>
   );
 }
