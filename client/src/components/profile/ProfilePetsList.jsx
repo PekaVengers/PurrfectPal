@@ -13,7 +13,7 @@ const ProfilePetsList = ({
   toast,
 }) => {
   return (
-    <div className="w-[90%] bg-[#EEF3FF] vsm:w-[80%] msm:w-[65%] md:w-[60%] mmd:w-[55%] lg:w-[45%] xl:w-[40%] 2xl:w-[35%] 3xl:w-[30%] relative py-[1rem] px-[1rem] vsm:px-[2rem] rounded-[3rem] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-2 gsm:gap-[1.5rem] items-center shadow-custom">
+    <Link to={`/pets/${id}`} className="w-[90%] bg-[#EEF3FF] vsm:w-[80%] msm:w-[65%] md:w-[60%] mmd:w-[55%] lg:w-[45%] xl:w-[40%] 2xl:w-[35%] 3xl:w-[30%] relative py-[1rem] px-[1rem] vsm:px-[2rem] rounded-[3rem] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-2 gsm:gap-[1.5rem] items-center shadow-custom">
       <div className="petDetails flex flex-col gsm:flex-row gap-[0.5rem] vsm:gap-[1rem] gsm:gap-[2rem] items-center">
         <div className="overflow-hidden w-[4rem] h-[4rem] vsm:w-[5rem] vsm:h-[5rem] lg:w-[6rem] lg:h-[6rem] rounded-[50%] border-2 border-black">
           <img
@@ -40,10 +40,12 @@ const ProfilePetsList = ({
           Delete
         </button>
         <Link to={`/open-adopt/${id}`}>
-          <button>Open for Adopt</button>
+          <button
+            className={`text-[1rem] vsm:text-[1.2rem] uppercase font-bold px-[3rem] py-[0.5rem] font-primary text-black rounded-[2rem] hover:bg-[#DFE8FD] hover:text-[#0B0019] border-2 border-[#0B0019] bg-[#BBDDF9] px-[1rem] vsm:px-[1.5rem] vsm:py-[0.2rem] gsm:px-[3rem]`}
+          >Open for Adopt</button>
         </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

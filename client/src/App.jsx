@@ -7,10 +7,12 @@ import Profile, {loader as profileLoader} from "./pages/Profile";
 import AddPet, {action as petAction} from "./pages/AddPet";
 import Petfolio from "./pages/Petfolio";
 import Error from "./pages/Error";
-import PetsList from "./pages/PetsList";
+import PetsList, {loader as petsLoader} from "./pages/PetsList";
 import { AuthProvider } from "./contexts/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
-import OpenAdopt from "./pages/OpenAdopt";
+import OpenAdopt, {action as openAdoptAction} from "./pages/OpenAdopt";
+import PsychoQuiz from "./components/psycho_quiz/PsychoQuiz";
+import Requests from "./components/profile/Requests";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
         element: <AddPet />,
       },
       {
+        loader: petsLoader,
         path: "pets",
         element: <PetsList />,
       },
@@ -51,9 +54,18 @@ const router = createBrowserRouter([
         element: <Petfolio />,
       },
       {
+        action: openAdoptAction,
         path: "open-adopt/:id",
         element: <OpenAdopt />,
       },
+      {
+        path: 'quiz',
+        element: <PsychoQuiz/>
+      },
+      {
+        path: 'req',
+        element: <Requests/>
+      }
     ],
   },
 ]);

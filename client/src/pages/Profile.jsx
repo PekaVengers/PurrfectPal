@@ -13,6 +13,7 @@ import Offline from "../components/Offline";
 import checkAuth from "../utils/checkAuth";
 import apiRequest from "../utils/apiRequest";
 import { redirect } from "react-router-dom";
+import Cursor from "../components/Cursor";
 
 export async function loader({ params, request }) {
   if (!checkAuth()) {
@@ -58,14 +59,23 @@ export default function Profile() {
 
   return (
     <>
+      <Cursor />
       {userPets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
           <ProfileCard
-            username={userData.name}
-            userLocation={userData.location}
-            phoneNo={userData.phone}
-            email={userData.username}
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
+          />
+
+          <SectionHeading heading="Profile" />
+          <ProfileCard
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
           />
 
           {/* {
@@ -96,17 +106,17 @@ export default function Profile() {
               <div className="pets mt-[2rem] w-full xl:w-[80%] flex flex-wrap justify-center gap-x-[2rem] gap-y-[3rem]">
                 {userPets.map(
                   ({ id, profile_img, name, category, breed, birth_year }) => (
-                    <Link to={`/pets/${id}`} key={id}>
-                      <ProfilePetsList
-                        id={id}
-                        petName={name}
-                        petType={category}
-                        petBreed={breed}
-                        petAge={new Date().getFullYear - birth_year}
-                        profile={IMG_BASE_URL + profile_img}
-                        toast={toast}
-                      />
-                    </Link>
+
+                    <ProfilePetsList
+                      key={id}
+                      id={id}
+                      petName={name}
+                      petType={category}
+                      petBreed={breed}
+                      petAge={new Date().getFullYear() - birth_year}
+                      profile={IMG_BASE_URL + profile_img}
+                      toast={toast}
+                    />
                   )
                 )}
               </div>

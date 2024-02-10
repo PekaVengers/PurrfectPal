@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
+from neurelo.configuration import Configuration
+from neurelo.api_client import ApiClient
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +49,7 @@ INSTALLED_APPS = [
     'social_django',
     'drf_social_oauth2',
     'corsheaders',
+    'cloudinary',
 
     'pets',
     'users',
@@ -94,6 +100,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES['default'] = dj_database_url.config(
+#     default=os.getenv('DATABASE_URL'),
+#     conn_max_age=600,
+#     conn_health_checks=True,
+# )
 
 
 # Password validation
@@ -151,3 +163,19 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 MEDIA_URL = '/media/'
 
 CLOUDINARY_URL = f'cloudinary://{os.getenv("ClOUDINARY_API_KEY")}:{os.getenv("ClOUDINARY_API_SECRET")}@{os.getenv("ClOUDINARY_CLOUD_NAME")}'
+
+cloudinary.config( 
+  cloud_name = os.getenv("ClOUDINARY_CLOUD_NAME"), 
+  api_key = os.getenv("ClOUDINARY_API_KEY"), 
+  api_secret = os.getenv("ClOUDINARY_API_SECRET"),
+  secure = True
+)
+NEURELO_API_HOST = os.getenv('NEURELO_API_HOST')
+NEURELO_API_KEY = os.getenv('NEURELO_API_KEY')
+
+configuration = Configuration(
+	host=NEURELO_API_HOST,
+	api_key={'ApiKey': NEURELO_API_KEY}
+)
+
+API_CLIENT = ApiClient(configuration=configuration)
