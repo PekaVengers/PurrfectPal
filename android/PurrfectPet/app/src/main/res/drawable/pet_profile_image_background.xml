@@ -1,0 +1,16 @@
+<!-- pet_profile_image_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Add a solid color background -->
+    <solid android:color="@color/primary_color" />
+
+    <!-- Add a border -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/sec_color" />
+
+    <!-- Add corner radius to round the corners -->
+    <corners android:radius="16dp" />
+
+</shape>

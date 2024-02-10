@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="mocha">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">#26117A</item>
+    </style>
+
+    <style name="AppTheme.PopupMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorControlNormal">@color/primary_color</item> <!-- Color of the menu item text -->
+        <item name="android:background">@drawable/menu_item_background</item> <!-- Background drawable of the menu item -->
+    </style>
+
+
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Purrfect Pet</string>
+    <string name="mocha">Hi Mocha,\nCatch your dog friends now</string>
+    <string name="pet_image">Pet Image</string>
+    <string name="profile">Profile</string>
+    <string name="about_us">About us</string>
+    <string name="log_out">Log out</string>
+    <string name="note_about_us">A app for babysitting for pet                                 Contact us : contactus@pets.com</string>
+    <string name="login_to_register">Don\'t have an account? Register here.</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="logo">logo</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
+    <string name="register_to_login">Have an account? Login here.</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="location">Location</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="adopt">Adopt</string>
+    <string name="request_to_adopt">Request to Adopt</string>
+
+</resources>

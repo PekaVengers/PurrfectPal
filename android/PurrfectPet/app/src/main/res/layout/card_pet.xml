@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/card_background">
+
+    <ImageView
+        android:id="@+id/imageViewPet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash"
+        android:contentDescription="@string/pet_image" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Pet Name"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Type: Dog"
+        android:textColor="@color/sec_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewBreed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/sec_color"
+        android:text="Breed: Golden Retriever"
+        android:layout_marginTop="4dp"/>
+
+</LinearLayout>
