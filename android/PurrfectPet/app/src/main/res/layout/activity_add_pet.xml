@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/form_background"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Name" />
+
+        <TextView
+            android:id="@+id/textViewImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Image"
+            android:textSize="18sp"
+            android:layout_below="@id/editTextName"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/buttonChooseImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_color"
+            android:text="Choose Image"
+            android:layout_below="@id/textViewImage"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/textViewPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type of Pet"
+            android:textSize="18sp"
+            android:layout_below="@id/buttonChooseImage"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewPetType"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/textViewBreed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Breed"
+            android:textSize="18sp"
+            android:layout_below="@id/spinnerPetType"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextBreed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewBreed"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Breed"/>
+
+        <TextView
+            android:id="@+id/textViewGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="18sp"
+            android:layout_below="@id/editTextBreed"
+            android:layout_marginTop="16dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/textViewGender"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textViewYearOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Year of Birth"
+            android:textSize="18sp"
+            android:layout_below="@id/radioGroupGender"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextYearOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewYearOfBirth"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Year of Birth"/>
+
+        <TextView
+            android:id="@+id/textViewPrecaution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precaution"
+            android:textSize="18sp"
+            android:layout_below="@id/editTextYearOfBirth"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextPrecaution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewPrecaution"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Precaution (Optional)"/>
+
+        <TextView
+            android:id="@+id/textViewInterest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Interest"
+            android:textSize="18sp"
+            android:layout_below="@id/editTextPrecaution"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextInterest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewInterest"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Interest (Optional)"/>
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_color"
+            android:text="Submit"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

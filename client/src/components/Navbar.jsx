@@ -17,8 +17,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`md:bg-transparent px-2 pt-4 lg:pt-[3rem] vsm:p-4 font-primary uppercase absolute top-0 w-full z-10 ${menuOpen?"bg-[#F8AA26]":"bg-transparent"}`}>
-        <div className="container min-w-[98%] flex flex-col justify-around items-center md:flex-row md:text-[1.3rem] md:justify-between text-[#080909] font-semibold mx-auto ease-in duration-300 md:px-4">
+      <nav
+        className={`md:bg-transparent px-2 pt-4 lg:pt-[3rem] vsm:p-4 font-primary uppercase absolute top-0 w-full z-10 ${
+          menuOpen ? "bg-[#F8AA26]" : "bg-transparent"
+        }`}
+      >
+        <div className="container min-w-[98%] flex flex-col justify-around items-center md:flex-row md:text-[1.3rem] md:justify-between text-[#080909] font-semibold mx-auto ease-in duration-300 md:px-2">
           <div className="logoIconContainer flex w-full md:w-fit justify-between items-center">
             <NavLink to="/" className="text-[1.5rem] font-semibold">
               <img
@@ -28,7 +32,10 @@ export default function Navbar() {
               />
             </NavLink>
             {!menuOpen ? (
-              <IoMenu onClick={() => toggleMenu()} className="text-[1.5rem] gsm:text-[2rem] md:hidden" />
+              <IoMenu
+                onClick={() => toggleMenu()}
+                className="text-[1.5rem] gsm:text-[2rem] md:hidden"
+              />
             ) : (
               <RxCross1
                 onClick={() => toggleMenu()}
@@ -37,11 +44,29 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className={`${menuOpen?"block":"hidden"} md:text-[1.5rem] md:font-bold md:block pt-2 flex flex-col md:flex-row w-full md:w-fit md:bg-transparent md:space-x-4 md:justify-center md:items-center gap-2 text-right ease-in duration-300`}>
-            <NavLink to="/pets" className={"md:text-[2rem]"}>Pets</NavLink>
+          <div
+            className={`${
+              menuOpen ? "block" : "hidden"
+            } md:text-[1.5rem] md:font-bold md:block pt-2 flex flex-col md:flex-row w-full md:w-fit md:bg-transparent md:space-x-4 md:justify-center md:items-center text-right ease-in duration-300`}
+          >
+            <NavLink
+              to="/pets"
+              className={
+                "md:text-[2rem] hover:bg-[#DFE8FD] rounded-[0.5rem] px-2"
+              }
+            >
+              Pets
+            </NavLink>
             {isLoggedIn ? (
               <>
-                <NavLink to="/profile" className={"md:text-[2rem]"}>Profile</NavLink>
+                <NavLink
+                  to="/profile"
+                  className={
+                    "md:text-[2rem] hover:bg-[#DFE8FD] rounded-[0.5rem] px-2"
+                  }
+                >
+                  Profile
+                </NavLink>
                 <a
                   onClick={() => {
                     toast.success("Logout Successful!");
@@ -49,14 +74,29 @@ export default function Navbar() {
                     localStorage.clear();
                     navigate("/");
                   }}
-                  className="uppercase md:text-[2rem]">
+                  className="uppercase md:text-[2rem] hover:bg-[#DFE8FD] rounded-[0.5rem] px-2"
+                >
                   Logout
                 </a>
               </>
             ) : (
               <>
-                <NavLink to="/register" className={"md:text-[2rem]"}>Register</NavLink>
-                <NavLink to="/login" className={"md:text-[2rem]"}>Login</NavLink>
+                <NavLink
+                  to="/register"
+                  className={
+                    "md:text-[2rem] hover:bg-[#DFE8FD] rounded-[0.5rem] px-2"
+                  }
+                >
+                  Register
+                </NavLink>
+                <NavLink
+                  to="/login"
+                  className={
+                    "md:text-[2rem] hover:bg-[#DFE8FD] rounded-[0.5rem] px-2"
+                  }
+                >
+                  Login
+                </NavLink>
               </>
             )}
           </div>

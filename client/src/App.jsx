@@ -11,6 +11,7 @@ import PetsList from "./pages/PetsList";
 import { AuthProvider } from "./contexts/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 import OpenAdopt, {action as openAdoptAction} from "./pages/OpenAdopt";
+import PsychoQuiz from "./components/psycho_quiz/PsychoQuiz";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         path: "open-adopt/:id",
         element: <OpenAdopt />,
       },
+      {
+        path: 'quiz',
+        element: <PsychoQuiz/>
+      }
     ],
   },
 ]);

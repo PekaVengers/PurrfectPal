@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageViewPet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash"
+        android:contentDescription="@string/pet_image"
+        android:background="@drawable/pet_profile_image_background" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewPet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Fluffy"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Type: Dog"
+        android:textColor="@color/sec_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewBreed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewType"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Breed: Golden Retriever"
+        android:textColor="@color/sec_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewBreed"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Age: 2 years"
+        android:textColor="@color/sec_color"
+        android:textSize="18sp" />
+
+    <!-- Photo gallery carousel -->
+    <!-- Add your photo gallery carousel here -->
+
+    <TextView
+        android:id="@+id/textViewOtherInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAge"
+        android:layout_marginTop="24dp"
+        android:text="Other Information"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewOtherInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewOtherInfoTitle"
+        android:layout_marginTop="8dp"
+        android:text="Fluffy loves long walks in the park and playing fetch."
+        android:textColor="@color/sec_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewOwnersInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewOtherInfo"
+        android:layout_marginTop="24dp"
+        android:text="Owner's Information"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewOwnersInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewOwnersInfoTitle"
+        android:layout_marginTop="8dp"
+        android:text="Owner: John Doe\nContact: john.doe@example.com"
+        android:textColor="@color/sec_color"
+        android:textSize="16sp" />
+
+
+
+    <Button
+        android:textColor="#fff"
+        android:background="@drawable/buttonstyle"
+        android:layout_marginTop="35dp"
+        android:layout_below="@id/textViewOwnersInfo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="@string/request_to_adopt"/>
+
+</RelativeLayout>

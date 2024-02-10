@@ -7,7 +7,7 @@ export default function Footer() {
       <span>&copy; 2023 PetCare </span>
       <ul className="footer flex gap-[1rem] md:gap-[2rem]">
         <div className="flex items-center">
-          <a href="https://github.com/PekaVengers/PetCare">
+          <a href="https://github.com/PekaVengers/PurrfectPal">
             <FaGithub />
           </a>
         </div>

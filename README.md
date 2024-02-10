@@ -26,3 +26,4 @@ We are introducing "Purrfect Pal" - an innovative app acting as an intermediary 
 * Django (Backend)
 * Postgres (Database)
 * Java (Android application)
+* Neurelo (to query Database)

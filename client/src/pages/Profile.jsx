@@ -13,6 +13,7 @@ import Offline from "../components/Offline";
 import checkAuth from "../utils/checkAuth";
 import apiRequest from "../utils/apiRequest";
 import { redirect } from "react-router-dom";
+import Cursor from "../components/Cursor";
 
 export async function loader({ params, request }) {
   if (!checkAuth()) {
@@ -58,14 +59,23 @@ export default function Profile() {
 
   return (
     <>
+      <Cursor />
       {userPets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
           <ProfileCard
-            username={userData.name}
-            userLocation={userData.location}
-            phoneNo={userData.phone}
-            email={userData.username}
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
+          />
+
+          <SectionHeading heading="Profile" />
+          <ProfileCard
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
           />
 
           {/* {

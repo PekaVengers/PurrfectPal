@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
 import { allPets } from "../constants/config";
+import Cursor from "../components/Cursor";
 
 export default function PetsList() {
   const online = useOnline();
@@ -20,8 +21,12 @@ export default function PetsList() {
 
   return (
     <>
+      <Cursor />
       <div className="bg-[#919177] w-full min-h-screen flex flex-col justify-center items-center">
-        <SectionHeading heading="Pets" styles="mt-[6rem] vsm:mt-[10rem] mb-[1rem] gsm:mb-[1.5rem]" />
+        <SectionHeading
+          heading="Pets"
+          styles="mt-[6rem] vsm:mt-[10rem] mb-[1rem] gsm:mb-[1.5rem]"
+        />
         {isLoggedIn && (
           <Link to="/add-pet">
             <DarkButton buttonText="Add your pet" />
