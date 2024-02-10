@@ -26,7 +26,6 @@ export async function loader({ params, request }) {
       return redirect("/login");
     }
     finalData.userData = data;
-
   } catch (error) {
     console.log(error);
   }
@@ -37,7 +36,6 @@ export async function loader({ params, request }) {
       return redirect("/login");
     }
     finalData.petsData = data;
-
   } catch (error) {
     console.log(error);
   }
@@ -46,7 +44,7 @@ export async function loader({ params, request }) {
 }
 
 export default function Profile() {
-  console.log(import.meta.env.VITE_BASE_URL)
+  console.log(import.meta.env.VITE_BASE_URL);
   const IMG_BASE_URL = import.meta.env.VITE_BASE_URL;
   const online = useOnline();
   const loaderData = useLoaderData();
@@ -63,7 +61,12 @@ export default function Profile() {
       {userPets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
-          <ProfileCard username={userData.name} userLocation={userData.location} phoneNo={userData.phone} email={userData.username}/>
+          <ProfileCard
+            username={userData.name}
+            userLocation={userData.location}
+            phoneNo={userData.phone}
+            email={userData.username}
+          />
 
           {/* {
             request && (
@@ -93,16 +96,17 @@ export default function Profile() {
               <div className="pets mt-[2rem] w-full xl:w-[80%] flex flex-wrap justify-center gap-x-[2rem] gap-y-[3rem]">
                 {userPets.map(
                   ({ id, profile_img, name, category, breed, birth_year }) => (
-                    <ProfilePetsList
-                      key={id}
-                      id={id}
-                      petName={name}
-                      petType={category}
-                      petBreed={breed}
-                      petAge={new Date().getFullYear - birth_year}
-                      profile={IMG_BASE_URL + profile_img}
-                      toast={toast}
-                    />
+                    <Link to={`/pets/${id}`} key={id}>
+                      <ProfilePetsList
+                        id={id}
+                        petName={name}
+                        petType={category}
+                        petBreed={breed}
+                        petAge={new Date().getFullYear - birth_year}
+                        profile={IMG_BASE_URL + profile_img}
+                        toast={toast}
+                      />
+                    </Link>
                   )
                 )}
               </div>

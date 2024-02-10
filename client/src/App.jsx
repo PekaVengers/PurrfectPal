@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         element: <Petfolio />,
       },
       {
-        path: "open-adopt",
+        path: "open-adopt/:id",
         element: <OpenAdopt />,
       },
     ],
