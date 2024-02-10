@@ -4,6 +4,7 @@ import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
 import { Form, redirect } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
+import Cursor from "../components/Cursor";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -34,6 +35,7 @@ export default function OpenAdopt() {
 
   return (
     <>
+    <Cursor/>
       <div className="w-full min-h-screen bg-[#919177] flex flex-col justify-center items-center gap-[1rem] pt-[8rem] pb-[5rem]">
         <SectionHeading heading="Add Pet" styles="text-[4rem]" />
         <Form

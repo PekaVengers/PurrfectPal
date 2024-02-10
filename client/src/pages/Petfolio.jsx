@@ -11,6 +11,7 @@ import Offline from "../components/Offline";
 import puppy1 from "../assets/images/puppy1.jpg";
 import puppy2 from "../assets/images/puppy2.jpg";
 import puppy3 from "../assets/images/puppy3.jpg";
+import Cursor from "../components/Cursor";
 
 export default function Petfolio() {
   const online = useOnline();
@@ -39,6 +40,7 @@ export default function Petfolio() {
 
   return (
     <>
+    <Cursor/>
       {petDetails ? (
         <div className="bg-[#919177] w-full min-h-screen flex items-center">
           <main className="w-[95%] xl:w-[80%] 2xl:w-[60%] mt-[5rem] vsm:mt-[7rem] gsm:mt-[10rem] mb-[2rem] gsm:mb-[5rem] flex flex-col justify-center items-center mx-auto">
