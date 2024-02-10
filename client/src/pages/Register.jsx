@@ -151,8 +151,8 @@ export default function Register() {
               type={"number"}
               name="aadhaar"
               id="aadhaar"
-              pattern="\d{15}"
-              maxLength={15}
+              pattern="\d{12}"
+              maxLength={12}
               styles="mb-0"
             />
             {isVerified ? (
