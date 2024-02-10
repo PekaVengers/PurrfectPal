@@ -8,16 +8,16 @@ export const AadhaarVerify = () => {
         const options = {
             method: 'POST',
             headers: {
-                'content-type': 'application/x-www-form-urlencoded',
-                'X-RapidAPI-Key': '5de30d81f7msh4232aed7eaca995p1d6fd6jsnba44fb5c3f4f',
-                'X-RapidAPI-Host': 'verifyaadhaarnumber.p.rapidapi.com'
+                'content-type': import.meta.env.VITE_CONTENT_TYPE,
+                'X-RapidAPI-Key': import.meta.env.VITE_X_RAPID_API_KEY,
+                'X-RapidAPI-Host': import.meta.env.VITE_X_RAPID_API_HOST
             },
             body: new URLSearchParams({
-                txn_id: '17c6fa41-778f-49c1-a80a-cfaf7fae2fb8',
-                consent: 'Y',
+                txn_id: import.meta.env.VITE_TXN_ID,
+                consent: import.meta.env.VITE_CONSENT,
                 uidnumber: aadhaarNo,
-                clientid: '222',
-                method: 'uidvalidatev2'
+                clientid: import.meta.env.VITE_CLIENT_ID,
+                method: import.meta.env.VITE_METHOD
             })
         };
 
