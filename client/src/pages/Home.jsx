@@ -1,4 +1,4 @@
-import Banner from "../assets/images/a.png";
+import Banner from "../assets/images/banner.png";
 import Hero from "../components/homepage/Hero";
 import CTA from "../components/homepage/CTA";
 import Testimonial from "../components/homepage/Testimonial";

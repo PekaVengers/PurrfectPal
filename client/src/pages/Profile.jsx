@@ -62,10 +62,18 @@ export default function Profile() {
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
           <SectionHeading heading="Profile" />
           <ProfileCard
-            username={userData.name}
-            userLocation={userData.location}
-            phoneNo={userData.phone}
-            email={userData.username}
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
+          />
+
+         <SectionHeading heading="Profile" />
+          <ProfileCard
+            username={userData?.name}
+            userLocation={userData?.location}
+            phoneNo={userData?.phone}
+            email={userData?.username}
           />
 
           {/* {
