@@ -2,8 +2,9 @@ import avatar from "../../assets/images/avatar.png";
 
 const ProfileCard = (props) => {
   // eslint-disable-next-line react/prop-types
-  // const {username, userLocation, phoneNo, email} = props;
-  const [username, userLocation, phoneNo, email] = ["Master", "Alwar, India", "+91 7014736671", "singodiyashubham87@gmail.com"];  
+  const {username, userLocation, phoneNo, email} = props;
+  // const [username, userLocation, phoneNo, email] = ["Master", "Alwar, India", "+91 7014736671", "singodiyashubham87@gmail.com"];  
+
 
   return (
     <div className="rounded-[3rem] bg-[#EEF3FF] relative mb-[1rem] py-[1.5rem] px-[2rem] rounded-[3rem] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-[1rem] items-center shadow-custom">

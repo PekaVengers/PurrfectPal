@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext } from "react-router-dom";
 import AddPetButton from "../components/pets/DarkButton";
 import SectionHeading from "../components/SectionHeading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import ProfileCard from "../components/profile/ProfileCard";
 // import ReceivedRequests from "../components/profile/ReceivedRequests";
@@ -45,8 +45,14 @@ export async function loader({ params, request }) {
 }
 
 export default function Profile() {
-  console.log(import.meta.env.VITE_BASE_URL);
   const IMG_BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  const [isLoggedIn, setIsLoggedIn] = useOutletContext();
+
+  useEffect(() => {
+    setIsLoggedIn(true);
+  }, []);
+
   const online = useOnline();
   const loaderData = useLoaderData();
   const [userPets, setUserPets] = useState(loaderData?.petsData || []);
@@ -62,14 +68,6 @@ export default function Profile() {
       <Cursor />
       {userPets && (
         <div className="w-full min-h-screen pt-[10rem] pb-[5rem] bg-[#919177] flex flex-col items-center">
-          <SectionHeading heading="Profile" />
-          <ProfileCard
-            username={userData?.name}
-            userLocation={userData?.location}
-            phoneNo={userData?.phone}
-            email={userData?.username}
-          />
-
           <SectionHeading heading="Profile" />
           <ProfileCard
             username={userData?.name}

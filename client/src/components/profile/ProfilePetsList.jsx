@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import avatar from "../../assets/images/avatar.png";
 import { deletePetHandler } from "../../utils/profilePageHelpers";
+import apiRequest from "../../utils/apiRequest";
 
 const ProfilePetsList = ({
   id,
@@ -12,6 +13,15 @@ const ProfilePetsList = ({
   petAge,
   toast,
 }) => {
+
+  async function handleDelete() {
+    try {
+      const res = await apiRequest(`/api/pets/${id}`, "DELETE");
+    } catch(error) {
+      console.error("Error in deleting pet: ");
+    }
+    return null;
+  }
   return (
     <Link to={`/pets/${id}`} className="w-[90%] bg-[#EEF3FF] vsm:w-[80%] msm:w-[65%] md:w-[60%] mmd:w-[55%] lg:w-[45%] xl:w-[40%] 2xl:w-[35%] 3xl:w-[30%] relative py-[1rem] px-[1rem] vsm:px-[2rem] rounded-[3rem] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-2 gsm:gap-[1.5rem] items-center shadow-custom">
       <div className="petDetails flex flex-col gsm:flex-row gap-[0.5rem] vsm:gap-[1rem] gsm:gap-[2rem] items-center">

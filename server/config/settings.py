@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-from neurelo.configuration import Configuration
-from neurelo.api_client import ApiClient
 import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -170,12 +168,3 @@ cloudinary.config(
   api_secret = os.getenv("ClOUDINARY_API_SECRET"),
   secure = True
 )
-NEURELO_API_HOST = os.getenv('NEURELO_API_HOST')
-NEURELO_API_KEY = os.getenv('NEURELO_API_KEY')
-
-configuration = Configuration(
-	host=NEURELO_API_HOST,
-	api_key={'ApiKey': NEURELO_API_KEY}
-)
-
-API_CLIENT = ApiClient(configuration=configuration)

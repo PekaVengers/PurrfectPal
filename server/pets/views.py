@@ -73,10 +73,7 @@ class PetView(APIView):
     return Response(pet_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
   
   def delete(self, request, pk):
-    if not Pet.objects.filter(id=pk).exists():
-      return Response({'error': 'Pet not found'}, status=status.HTTP_404_NOT_FOUND)
-    pet = Pet.objects.get(id=pk)
-    pet.delete()
+    res = make_request("DELETE", f"rest/pet/{pk}")
     return Response({'message': 'Pet deleted'}, status=status.HTTP_200_OK)
   
 class PetAdoptView(APIView):
@@ -116,6 +113,11 @@ class AdoptionPetsView(APIView):
         }
       }
     }
+    
+
     response = make_request("GET", "rest/pet", data=data)
     data = response.json()
+
+    # select all the pets from pet_adopt table where the adopter id is null
+    
     return Response(data.get("data"))
