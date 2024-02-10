@@ -1,5 +1,6 @@
 package com.example.purrfectpet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import org.json.JSONException;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class Login_Activity extends AppCompatActivity {
     private static final String API_URL = "https://cute-apes-push.loca.lt/auth/token/";
@@ -132,7 +135,7 @@ public class Login_Activity extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(Login_Activity.this, "Error connecting to server", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Login_Activity.this, HomeActivity.class);
+                Intent intent = new Intent(Login_Activity.this, Addhar_Verification_Activity.class);
                 startActivity(intent);
             }
         }
