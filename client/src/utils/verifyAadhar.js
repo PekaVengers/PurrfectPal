@@ -11,14 +11,24 @@ const verifyAadhaar = async (aadhaarNo) => {
             txn_id: import.meta.env.VITE_TXN_ID,
             consent: import.meta.env.VITE_CONSENT,
             uidnumber: aadhaarNo,
-            clientid: import.meta.env.VITE_CLIENT_ID,
+            clientid: import.meta.env.VITE_AADHAAR_CLIENT_ID,
             method: import.meta.env.VITE_METHOD
         })
     };
 
     try {
         const response = fetch(url, options);
-        response.then((res)=>res.json().then(data => console.log(data)));
+        response.then((res)=>res.json().then(
+            data => {
+                if(data.transaction_status==1){
+                    return true;
+                }
+                else{
+                    console.log(data)
+                    return false;
+                }
+            }
+        ));
     } catch (error) {
         console.error(error);
     }

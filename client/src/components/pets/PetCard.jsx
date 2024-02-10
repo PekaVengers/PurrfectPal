@@ -15,7 +15,7 @@ const PetCard = (props) => {
     profile,
   } = props;
   return (
-    <div className="py-[1.5rem] px-[1rem] md:px-[1rem] rounded-[3rem] bg-[#EEF3FF] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-[0.6rem] vsm:gap-[1rem] items-center shadow-custom w-[95%] md:w-[65%] mmd:w-[60%] lg:w-[55%] xl:w-[50%] 2xl:w-[40%] 3xl:w-[35%] 4xl:w-[30%]">
+    <div className="py-[1.5rem] px-[1rem] md:px-[1rem] rounded-[3rem] bg-[#EEF3FF] border-t-2 border-l-2 border-[#0B0019] flex flex-col gap-[0.6rem] vsm:gap-[1rem] items-center shadow-custom w-[95%] md:w-[65%] mmd:w-[60%] lg:w-[80%] xl:w-[100%]">
       <div className="petDetails flex flex-col md:flex-row gap-[0.5rem] gsm:gap-[1rem] md:gap-[1.5rem] items-center justify-center">
         <div className="overflow-hidden w-[5rem] h-[5rem] lg:w-[6rem] lg:h-[6rem] xl:w-[7rem] xl:h-[7rem] rounded-[50%] border-2 border-black">
           <img
