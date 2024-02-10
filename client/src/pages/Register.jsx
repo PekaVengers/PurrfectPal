@@ -1,5 +1,5 @@
 import isStrongPassword from "../utils/isStrongPassword";
-import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import Input from "../components/register/Input";
 import Label from "../components/register/Label";
 import SectionHeading from "../components/SectionHeading";
@@ -7,6 +7,10 @@ import { ToastContainer, toast } from "react-toastify";
 import useOnline from "../hooks/useOnline";
 import Offline from "../components/Offline";
 import axiosInstance from "../utils/apiConfig";
+import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import verifyAadhaar from "../utils/verifyAadhar";
+import Loader from "../components/Loader";
 
 // eslint-disable-next-line no-unused-vars, react-refresh/only-export-components
 export async function action({ request }) {
@@ -20,12 +24,15 @@ export async function action({ request }) {
   // } else
   if (password !== confirm_password) {
     return {
-      "confirm_password": ["The confirm password field does not match the password field"]
-    }
+      confirm_password: [
+        "The confirm password field does not match the password field",
+      ],
+    };
   } else {
     try {
       await axiosInstance.post("/api/users/", formData);
       console.log("The user is created");
+
       return redirect("/login");
     } catch (error) {
       console.log(error);
@@ -36,17 +43,30 @@ export async function action({ request }) {
 }
 
 export default function Register() {
+  const [loader, setLoader] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const online = useOnline();
   if (!online) {
     return <Offline />;
   }
   const actionData = useActionData();
-  const navigation = useNavigation();
 
-
+  const handleAadhaarVerify = () => {
+    setLoader(true);
+    const aadhaarNum = document.getElementById("aadhaar").value;
+    console.log(aadhaarNum);
+    const verified = verifyAadhaar(aadhaarNum);
+    if (verified) {
+      setIsVerified(true);
+    } else {
+      setIsVerified(false);
+    }
+    setLoader(false);
+  };
 
   return (
     <>
+      {loader && <Loader />}
       <div className="w-full min-h-screen bg-[#919177] flex flex-col justify-center items-center md:gap-[1rem] pt-[4rem] vsm:pt-[8rem] pb-[2rem] vsm:pb-[3.5rem] md:pb-[5rem]">
         <SectionHeading heading="Register" />
         <Form
@@ -55,19 +75,39 @@ export default function Register() {
         >
           <Label htmlFor={"name"} text="Name" />
           <Input required={true} type={"text"} name="name" id="name" />
-          {actionData?.name && actionData?.name.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.name &&
+            actionData?.name.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
           <Label htmlFor={"email"} text="Email" />
           <Input required={true} type={"email"} name="username" id="email" />
-          {actionData?.username && actionData?.username.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.username &&
+            actionData?.username.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
           <Label htmlFor={"phoneNo"} text="Phone Number" />
           <Input required={true} type={"tel"} name="phone" id="phoneNo" />
-          {actionData?.phone && actionData?.phone.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.phone &&
+            actionData?.phone.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
           <Label htmlFor={"location"} text="Location" />
           <Input required={true} type={"text"} name="location" id="location" />
-          {actionData?.location && actionData?.location.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.location &&
+            actionData?.location.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
           <Label htmlFor={"password"} text="Password" />
           <Input
@@ -76,7 +116,12 @@ export default function Register() {
             name="password"
             id="password"
           />
-          {actionData?.password && actionData?.password.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.password &&
+            actionData?.password.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
           <Label htmlFor={"confirm_password"} text="Confirm Password" />
           <Input
@@ -84,12 +129,46 @@ export default function Register() {
             name="confirm_password"
             id="confirm_password"
           />
-          {actionData?.confirm_password && actionData?.confirm_password.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.confirm_password &&
+            actionData?.confirm_password.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
 
-          {actionData?.non_field_errors && actionData?.non_field_errors.map((error, i) => <div className="text-red-500" key={i}>{error}</div>)}
+          {actionData?.non_field_errors &&
+            actionData?.non_field_errors.map((error, i) => (
+              <div className="text-red-500" key={i}>
+                {error}
+              </div>
+            ))}
+
+          <Label htmlFor={"aadhaar"} text="Aadhar Number" />
+          <div className="aadhaar flex gap-2 justify-center items-center mb-4">
+            <Input
+              type={"number"}
+              name="aadhaar"
+              id="aadhaar"
+              pattern="\d{15}"
+              maxLength={15}
+              styles="mb-0"
+            />
+            {isVerified ? (
+              <FaCheckCircle />
+            ) : (
+              <button
+                className="uppercase bg-[#565637] text-white px-[0.5rem] rounded-[0.5rem]"
+                onClick={handleAadhaarVerify}
+              >
+                Verify
+              </button>
+            )}
+          </div>
+
           <button
             type="submit"
             className="w-full py-2 mt-4 md:mt-0 md:p-2 bg-[#565637] text-[#EEF3FF] text-[1.1rem] md:text-[1.5rem] rounded-md hover:text-[#FEFFC0] hover:bg-[#0B0019] uppercase font-semibold md:mt-4"
+            disabled={!isVerified}
           >
             Register
           </button>
